@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "title": "Дрель1",
+    "info": "Для дыр",
+    "img": "https://cdnmedia.220-volt.ru/content/products/406/406116/images/original/n1200x800_q80/1.jpeg",
+    "url": "https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c"
+  },
+  {
+    "id": "2",
+    "title": "Дрель2",
+    "info": "Для дыр",
+    "img": "https://cdnmedia.220-volt.ru/content/products/406/406116/images/original/n1200x800_q80/1.jpeg",
+    "url": "https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c"
+  },
+  {
+    "id": "3",
+    "title": "Дрель3",
+    "info": "Для дыр",
+    "img": "https://cdnmedia.220-volt.ru/content/products/406/406116/images/original/n1200x800_q80/1.jpeg",
+    "url": "https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c"
+  }
+]
