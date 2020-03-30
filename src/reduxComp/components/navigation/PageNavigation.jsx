@@ -65,50 +65,58 @@ function PageNavigation(props) {
 
     let {path, url} = useRouteMatch();
     const classes = useStyles();
+    const ref = React.createRef();
 
     return (
-        <div>
-            <Container className={classes.cardGrid} maxWidth="md">
-                <Grid container spacing={4}>
-                    {props.tools.map((tool) => (
-                        <Grid item key={tool.id} xs={12} sm={6} md={4}>
-                            <Card className={classes.card}>
-                                <Link to={`${url}/${tool.id}`}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image={tool.img}
-                                        title={tool.info}
+        <Container className={classes.cardGrid} maxWidth="md" ref={ref}>
+            <Grid container spacing={4}>
+                {props.tools.map((tool) => (
+                    <Grid item key={tool.id} xs={12} sm={6} md={4}>
+                        <Card className={classes.card}>
+                            <Link to={`${url}/${tool.id}`}>
+                                <CardMedia
+                                    className={classes.cardMedia}
+                                    image={tool.img}
+                                    title={tool.info}
+                                />
+                            </Link>
+                            <Switch>
+                                <Route exact path={path}>
+                                </Route>
+                                <Route path={`${path}/${tool.id}`}>
+                                    <Item
+                                        id={tool.id}
                                     />
-                                </Link>
-                                <Switch>
-                                    <Route exact path={path}>
-                                    </Route>
-                                    <Route path={`${path}/${tool.id}`}>
-                                        <Item
-                                            id={tool.id}
-                                        />
-                                    </Route>
-                                </Switch>
-                                <CardContent className={classes.cardContent}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {tool.title}
-                                    </Typography>
-                                    <Typography>
-                                        {tool.info}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button size="small" color="primary"
-                                            onClick={() => props.setBuy(tool)}>
-                                        Buy
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
-        </div>
+                                </Route>
+                            </Switch>
+                            <CardContent
+                                className={classes.cardContent}
+                            >
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="h2"
+                                >
+                                    {tool.title}
+                                </Typography>
+                                <Typography>
+                                    {tool.info}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button
+                                    size="small"
+                                    color="primary"
+                                    onClick={() => props.setBuy(tool)}
+                                >
+                                    Buy
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Container>
     );
 }
 

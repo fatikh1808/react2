@@ -7,12 +7,10 @@ export class Page extends React.Component {
 
     render() {
         return (
-            <div>
                 <PageNavigation
                     tools={this.props.tools}
                     setBuy={this.props.setBuy}
                 />
-            </div>
         )
     }
 }

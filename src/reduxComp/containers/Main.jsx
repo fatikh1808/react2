@@ -14,14 +14,12 @@ export class Main extends React.Component {
 
         return (
             <Router>
-                <div>
-                    <MainNavigation
-                        page={page}
-                        basket={basket}
-                        setBuyAction={setBuyAction}
-                        setToolAction={setToolAction}
-                    />
-                </div>
+                <MainNavigation
+                    page={page}
+                    basket={basket}
+                    setBuyAction={setBuyAction}
+                    setToolAction={setToolAction}
+                />
             </Router>
         );
     }

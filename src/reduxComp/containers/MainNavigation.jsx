@@ -189,24 +189,22 @@ function MainNavigation(props) {
                     [classes.contentShift]: open,
                 })}
             >
-                <Typography paragraph>
-                    <Switch>
-                        <Route path={'/authorization'}>
-                            <Auth/>
-                        </Route>
-                        <Route path={'/basket'}>
-                            <Basket tools={basket.buyTools}/>
-                        </Route>
-                        <Route exact path={'/page'}>
-                            <Page tools={page.tools}
-                                  setBuy={setBuyAction}
-                            />
-                        </Route>
-                        <Route path={'/admin'}>
-                            <Admin setTool={setToolAction}/>
-                        </Route>
-                    </Switch>
-                </Typography>
+                <Switch>
+                    <Route path={'/authorization'}>
+                        <Auth/>
+                    </Route>
+                    <Route path={'/basket'}>
+                        <Basket tools={basket.buyTools}/>
+                    </Route>
+                    <Route exact path={'/page'}>
+                        <Page tools={page.tools}
+                              setBuy={setBuyAction}
+                        />
+                    </Route>
+                    <Route path={'/admin'}>
+                        <Admin setTool={setToolAction}/>
+                    </Route>
+                </Switch>
             </main>
         </div>
     );
