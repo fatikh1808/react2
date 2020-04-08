@@ -2,13 +2,14 @@ import React from "react";
 import {
     Switch,
     Route,
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 
 import Admin from "../components/admin/Admin";
 import Page from "../components/page/Page";
 import {Basket} from "../components/basket/Basket";
-import Auth from "../components/auth/auth";
+import AuthPage from "../components/auth/AuthPage";
 
 import clsx from 'clsx';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
@@ -99,7 +100,7 @@ function MainNavigation(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const {page, basket, setBuyAction, setToolAction} = props;
+    const {page, basket, setBuyAction, setToolAction, deleteToolAction} = props;
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -191,10 +192,12 @@ function MainNavigation(props) {
             >
                 <Switch>
                     <Route path={'/authorization'}>
-                        <Auth/>
+                        <AuthPage/>
                     </Route>
                     <Route path={'/basket'}>
-                        <Basket tools={basket.buyTools}/>
+                        <Basket tools={basket.buyTools}
+                                deleteTool={deleteToolAction}
+                        />
                     </Route>
                     <Route exact path={'/page'}>
                         <Page tools={page.tools}
@@ -204,6 +207,7 @@ function MainNavigation(props) {
                     <Route path={'/admin'}>
                         <Admin setTool={setToolAction}/>
                     </Route>
+                    <Redirect to={'/page'}/>
                 </Switch>
             </main>
         </div>

@@ -5,12 +5,13 @@ import {connect} from 'react-redux'
 import MainNavigation from "./MainNavigation";
 import {setBuy} from "../actions/PageActions";
 import {setTool} from "../actions/AdminActions";
+import {deleteTool} from "../actions/BasketActions";
 
 export class Main extends React.Component {
 
     render() {
 
-        const {page, basket, setBuyAction, setToolAction} = this.props;
+        const {page, basket, setBuyAction, setToolAction, deleteToolAction} = this.props;
 
         return (
             <Router>
@@ -19,6 +20,7 @@ export class Main extends React.Component {
                     basket={basket}
                     setBuyAction={setBuyAction}
                     setToolAction={setToolAction}
+                    deleteToolAction={deleteToolAction}
                 />
             </Router>
         );
@@ -30,14 +32,15 @@ const mapStateToProps = store => {
         user: store.user,
         page: store.page,
         basket: store.basket,
-        admin: store.admin
+        admin: store.admin,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         setBuyAction: tool => dispatch(setBuy(tool)),
-        setToolAction: tool => dispatch(setTool(tool))
+        setToolAction: tool => dispatch(setTool(tool)),
+        deleteToolAction: tool => dispatch(deleteTool(tool))
     }
 };
 
