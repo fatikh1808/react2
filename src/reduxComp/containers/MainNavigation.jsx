@@ -10,6 +10,7 @@ import Admin from "../components/admin/Admin";
 import Page from "../components/page/Page";
 import {Basket} from "../components/basket/Basket";
 import AuthPage from "../components/auth/AuthPage";
+import PrivateRoute from "./PrivateRoute";
 
 import clsx from 'clsx';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
@@ -100,7 +101,7 @@ function MainNavigation(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const {page, basket, setBuyAction, setToolAction, deleteToolAction} = props;
+    const {page, basket, setBuyAction, setToolAction, deleteToolAction, signup, login, isAuthenticated, logout} = props;
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -182,7 +183,12 @@ function MainNavigation(props) {
                         <ul>
                             <Link to={'/admin'}><ListItemText primary='admin'/></Link>
                         </ul>
-                    </ListItem>s
+                    </ListItem>
+                    <ListItem>
+                        <ul>
+                            <button onClick={logout}>logout</button>
+                        </ul>
+                    </ListItem>
                 </List>
             </Drawer>
             <main
@@ -192,22 +198,25 @@ function MainNavigation(props) {
             >
                 <Switch>
                     <Route path={'/authorization'}>
-                        <AuthPage/>
+                        <AuthPage signup={signup}
+                                  login={login}
+                                  isAuthenticated={isAuthenticated}
+                        />
                     </Route>
                     <Route path={'/basket'}>
                         <Basket tools={basket.buyTools}
                                 deleteTool={deleteToolAction}
                         />
                     </Route>
-                    <Route exact path={'/page'}>
+                    <PrivateRoute exact path={'/page'}>
                         <Page tools={page.tools}
                               setBuy={setBuyAction}
                         />
-                    </Route>
+                    </PrivateRoute>
                     <Route path={'/admin'}>
                         <Admin setTool={setToolAction}/>
                     </Route>
-                    <Redirect to={'/page'}/>
+                    <Redirect to={'/authorization'}/>
                 </Switch>
             </main>
         </div>

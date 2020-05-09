@@ -51,16 +51,16 @@ function AdminUI(props) {
                 value={info}
                 onChange={onChangeInfo}
             />
-            <input
-                accept="image/*"
-                className={classes.input}
-                id="contained-button-file"
-                multiple
-                type="file"
-                value={image}
-                onChange={onChangeImg}
+            {/*<input*/}
+            {/*    accept="image/*"*/}
+            {/*    className={classes.input}*/}
+            {/*    id="contained-button-file"*/}
+            {/*    multiple*/}
+            {/*    type="file"*/}
+            {/*    value={image}*/}
+            {/*    onChange={onChangeImg}*/}
 
-            />
+            {/*/>*/}
             <label htmlFor="contained-button-file">
                 <Button variant="contained" color="primary" component="span">
                     Добавить фотографие

@@ -9,8 +9,6 @@ function Item() {
         <div>
             <h3>{topicId}</h3>
             <p>{topicId}</p>
-
-            {console.log('hello')}
         </div>
     );
 }

@@ -1,26 +1,39 @@
 import React from "react";
 import {BrowserRouter as Router} from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from "redux";
 
 import MainNavigation from "./MainNavigation";
-import {setBuy} from "../actions/PageActions";
-import {setTool} from "../actions/AdminActions";
-import {deleteTool} from "../actions/BasketActions";
+import { setBuy } from "../actions/PageActions";
+import { setTool } from "../actions/AdminActions";
+import { deleteTool } from "../actions/BasketActions";
+import { signup, login, logout } from "../actions/AuthActions";
 
 export class Main extends React.Component {
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        this.props.logout();
+
+    };
+
     render() {
 
-        const {page, basket, setBuyAction, setToolAction, deleteToolAction} = this.props;
+        const {page, basket, setBuy, setTool, deleteTool, signup, login, isAuthenticated} = this.props;
 
         return (
             <Router>
                 <MainNavigation
                     page={page}
                     basket={basket}
-                    setBuyAction={setBuyAction}
-                    setToolAction={setToolAction}
-                    deleteToolAction={deleteToolAction}
+                    setBuyAction={setBuy}
+                    setToolAction={setTool}
+                    deleteToolAction={deleteTool}
+                    signup={signup}
+                    login={login}
+                    isAuthenticated={isAuthenticated}
+                    logout={this.handleSubmit}
                 />
             </Router>
         );
@@ -29,20 +42,23 @@ export class Main extends React.Component {
 
 const mapStateToProps = store => {
     return {
-        user: store.user,
+        auth: store.auth,
         page: store.page,
         basket: store.basket,
         admin: store.admin,
+        isAuthenticated: store.auth.isAuthenticated,
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        setBuyAction: tool => dispatch(setBuy(tool)),
-        setToolAction: tool => dispatch(setTool(tool)),
-        deleteToolAction: tool => dispatch(deleteTool(tool))
-    }
-};
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    setBuy,
+    setTool,
+    deleteTool,
+    signup,
+    login,
+    logout
+}, dispatch);
 
 
 export default connect(
